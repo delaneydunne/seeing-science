@@ -1,0 +1,33 @@
+[
+	{
+		"Type": "Title",
+		"Title": "Canned beans",
+		"Authors": "Bean"
+	},
+	{
+		"Type": "Text",
+		"Text": "We will insert some text here."
+	},
+	{
+		"Type": "Level",
+		"Level": "1",
+		"Text": "More text for level one."
+	},
+	{
+		"Type": "Figure",
+		"Figname": "seeing_science/papers/bean/paircorr.gif"
+	},
+	{
+		"Type": "Level",
+		"Level": "2",
+		"Text": "More text for level two."
+	},
+	{
+		"Type": "Figure",
+		"Figname": "seeing_science/papers/bean/polymer.gif"
+	},
+	{
+		"Type": "Text",
+		"Text": "Thanks for tuning in."
+	}
+]

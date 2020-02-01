@@ -1,0 +1,33 @@
+[
+	{
+		"Type": "Title",
+		"Title": "Observation of gravitational waves from a binary black hole merger",
+		"Authors": "LIGO"
+	},
+	{
+		"Type": "Text",
+		"Text": "We will insert some text here."
+	},
+	{
+		"Type": "Level",
+		"Level": "1",
+		"Text": "More text for level one."
+	},
+	{
+		"Type": "Figure",
+		"Figname": "seeing_science/papers/ligo/polymer.gif"
+	},
+	{
+		"Type": "Level",
+		"Level": "2",
+		"Text": "More text for level two."
+	},
+	{
+		"Type": "Figure",
+		"Figname": "seeing_science/papers/ligo/paircorr.gif"
+	},
+	{
+		"Type": "Text",
+		"Text": "Thanks for tuning in."
+	}
+]
