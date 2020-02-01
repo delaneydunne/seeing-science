@@ -47,7 +47,7 @@ y_pos_arr = np.tile(y_in, (1, tot_frames))
 phase = spatial_resolution*np.arange(tot_frames)
 
 # offset y-positions for each individual frame
-phase_offset = 1
+phase_offset = 0
 y_in_arr = np.add(y_pos_arr, phase)
 y_in_arr2 = np.add(y_in_arr, phase_offset)
 
@@ -61,7 +61,7 @@ wave2 = np.stack((x_pos_arr, np.sin(y_in_arr2)+3), axis=2)
 '''
 CREATE SUPERPOSITION OBJECT
 '''
-supdata = np.stack((x_pos_arr, np.sin(y_in_arr) - np.sin(y_in_arr2) - 3), axis=2)
+supdata = np.stack((x_pos_arr, np.sin(y_in_arr) + np.sin(y_in_arr2) - 3), axis=2)
 
 
 '''
@@ -91,4 +91,4 @@ def update(frame):
 
 
 ani = FuncAnimation(fig, update, tot_frames, interval=1000/fps, blit=False, repeat=True)
-ani.save('seeing_science\papers\LIGO\animations\test1.gif', writer='pillow', fps=fps)
+ani.save('test1.gif', writer='pillow', fps=fps)
