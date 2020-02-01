@@ -18,6 +18,7 @@ x_pos =  np.linspace(0, 10, num=sin_res)
 y_pos = np.sin(x_pos*omega)
 
 
+
 '''
 DEFINE ANIMATION PARAMETERS
 '''
@@ -26,12 +27,6 @@ spatial_resolution = 0.1
 tot_frames = 360
 fps = 30
 dx = 0.1
-
-
-
-'''
-CREATE SUPERPOSITION OBJECT
-'''
 
 
 '''
@@ -62,6 +57,13 @@ wave1 = np.stack((x_pos_arr, np.sin(y_in_arr)), axis=2)
 wave2 = np.stack((x_pos_arr, np.sin(y_in_arr2)+3), axis=2)
 
 
+
+'''
+CREATE SUPERPOSITION OBJECT
+'''
+supdata = np.stack((x_pos_arr, np.sin(y_in_arr) - np.sin(y_in_arr2) - 3), axis=2)
+
+
 '''
 INITIALIZE PLOT
 '''
@@ -73,6 +75,8 @@ sin1 = ax1.plot(wave1[:,0,0], wave1[:,0,1])[0]
 
 sin2 = ax1.plot(wave2[:,0,0], wave2[:,0,1])[0]
 
+sup = ax1.plot(supdata[:,0,0], supdata[:,0,1])[0]
+
 
 '''
 ANIMATE
@@ -80,10 +84,11 @@ ANIMATE
 
 # function to move from one frame to the next
 def update(frame):
-    sin1.set_data(allvals[:,frame,0], allvals[:,frame,1])
-    sin2.set_data(allvals2[:,frame,0], allvals2[:,frame,1])
+	sin1.set_data(wave1[:,frame,0], wave1[:,frame,1])
+	sin2.set_data(wave2[:,frame,0], wave2[:,frame,1])
+	sup.set_data(supdata[:,frame,0], supdata[:,frame,1])
+	
 
 
 ani = FuncAnimation(fig, update, tot_frames, interval=1000/fps, blit=False, repeat=True)
-ani.save('test1.gif', writer='pillow', fps=fps)
-plt.show()
+ani.save('seeing_science\papers\LIGO\animations\test1.gif', writer='pillow', fps=fps)
