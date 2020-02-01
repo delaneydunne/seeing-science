@@ -47,7 +47,7 @@ y_pos_arr = np.tile(y_in, (1, tot_frames))
 phase = spatial_resolution*np.arange(tot_frames)
 
 # offset y-positions for each individual frame
-phase_offset = 0
+phase_offset = np.pi
 y_in_arr = np.add(y_pos_arr, phase)
 y_in_arr2 = np.add(y_in_arr, phase_offset)
 
