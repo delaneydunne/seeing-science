@@ -1,0 +1,1 @@
+''' guidelines for scientists potentially contributing to this theoretical open-source website '''
