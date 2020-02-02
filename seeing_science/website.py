@@ -1,18 +1,17 @@
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
 import json
+import os
 
 '''
 COMMANDS TO RUN:
 
->>>> export FLASK_APP=website.py
+>>>> bash config_flask.bash
 >>>> flask run
 '''
 
 '''
 TODO LIST:
-- Make website load both 'ligo' and 'bean'
-- Make python automatically determine file paths
 - Setup home.html
 - Setup levels.html
 - Setup menu.html
@@ -27,9 +26,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 # List all the scientific contributions
-# List all the scientific contributions
-uri_list = ['ligo', 'bean']
-#https://stackoverflow.com/questions/33372054/get-folder-name-of-the-file-in-python
+uri_list = os.listdir('static')
+uri_list.remove('main.css')
 
 # Function to generate page
 def make_page(uri, posts):
