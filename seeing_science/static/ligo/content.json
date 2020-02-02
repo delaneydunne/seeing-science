@@ -53,7 +53,7 @@
 	{
 		"figname": "ligo/interferometer.gif",
 		"caption": "Michelson interferometer, instrument used to measure gravitational waves.",
-		"generator": "ligo/photon_interference.py"
+		"generator": "ligo/interferometer_animation.py"
 	},
 	{
 		"level": "4",
