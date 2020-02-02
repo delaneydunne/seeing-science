@@ -12,16 +12,8 @@ COMMANDS TO RUN:
 
 '''
 TODO LIST:
-- Setup home.html
-	- Include our values
-		- Cooperation
-		- Accessibility
-		- Open source
-		yada yada yada
-- Setup quiz.html
-- Write contribution_guidelines
-- Write README
-- Write levels_philosophy
+- LOGO
+- Finish all webpages
 - Make separate web pages for each level
 - Properly populate content.json files
 '''
@@ -51,8 +43,8 @@ def home():
 @app.route("/levels")
 def levels():
 	return render_template('levels.html', title='levels')
-	
-	
+
+
 @app.route("/quiz")
 def quiz():
 	return render_template('quiz.html', title='quiz')
@@ -61,6 +53,11 @@ def quiz():
 @app.route("/menu")
 def menu():
 	return render_template('menu.html', title='menu', posts=uri_dict_list)
+	
+	
+@app.route("/contribute")
+def contribute():
+	return render_template('contribute.html', title='contribute')
 
 
 # Generate pages for each contribution
