@@ -18,7 +18,8 @@
 	},
 	{
 		"figname": "ligo/BH_spiral.gif",
-		"caption": "Two black holes coalescing, emitting gravitational waves."
+		"caption": "Two black holes coalescing, emitting gravitational waves.",
+		"generator": "ligo/photon_interference.py"
 	},
 	{
 		"level": "2",
@@ -26,21 +27,24 @@
 	},
 	{
 		"figname": "ligo/constructive_interference.gif",
-		"caption": "Constructive interference between two waves."
+		"caption": "Constructive interference between two waves.",
+		"generator": "ligo/photon_interference.py"
 	},
 	{
 		"text": "On the other hand, if the waves line up oppositely, they are said to be out of phase and they cancel each other."
 	},
 	{
 		"figname": "ligo/destructive_interference.gif",
-		"caption": "Destructive interference between two waves."
+		"caption": "Destructive interference between two waves.",
+		"generator": "ligo/photon_interference.py"
 	},
 	{
 		"text": "In general, two waves will meet at some phase difference between in phase and out of phase, resulting in partial interference."
 	},
 	{
 		"figname": "ligo/out_of_phase.gif",
-		"caption": "Partial interference between two waves."
+		"caption": "Partial interference between two waves.",
+		"generator": "ligo/photon_interference.py"
 	},
 	{
 		"level": "3",
@@ -48,7 +52,8 @@
 	},
 	{
 		"figname": "ligo/interferometer.gif",
-		"caption": "Michelson interferometer, instrument used to measure gravitational waves."
+		"caption": "Michelson interferometer, instrument used to measure gravitational waves.",
+		"generator": "ligo/photon_interference.py"
 	},
 	{
 		"level": "4",

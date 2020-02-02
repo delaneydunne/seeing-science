@@ -43,6 +43,9 @@
 				<div class="media-body">
 					<img src="{{ url_for('static', filename=post.figname) }}">
 					<i><p class="article-content">{{ post.caption }}</p></i>
+					{% if post.generator %}
+						<a class="mr-2" href="{{ url_for('static', filename=post.generator) }}">Source code</a>
+					{% endif %}
 				</div>
 			</article>
 		
