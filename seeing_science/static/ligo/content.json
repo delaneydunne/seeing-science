@@ -6,49 +6,52 @@
 	{
 		"title": "Observation of gravitational waves from a binary black hole merger",
 		"authors": "LIGO",
-		"date": "September 2015",
+		"date": "February 2016",
 		"url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102"
 	},
 	{
-		"text": "Introductory text."
+		"text": "This discovery is monumental in the field of physics; it is the first detection of one of Einstein's oldest predictions."
 	},
 	{
 		"level": "1",
-		"text": "Level one."
+		"text": "To create \"gravitational waves\", you need to have two really big objects interacting. In the case of LIGO's experiment, this happened to be two black holes that spiralled one another. By spiralling around each other at large speeds, the black holes generated these gravitational waves."
 	},
 	{
 		"figname": "ligo/BH_spiral.gif",
-		"caption": "Two black holes coalescing."
+		"caption": "Two black holes coalescing, emitting gravitational waves."
 	},
 	{
 		"level": "2",
-		"text": "Level two."
+		"text": "To understand these gravitational waves, we first have to understand basic wave properties. If two waves line up, they are said to be in phase, and the add together to produce a stronger wave."
 	},
 	{
 		"figname": "ligo/constructive_interference.gif",
-		"caption": "Constructive and desctructive interference."
+		"caption": "Constructive interference between two waves."
+	},
+	{
+		"text": "On the other hand, if the waves line up oppositely, they are said to be out of phase and they cancel each other."
 	},
 	{
 		"figname": "ligo/destructive_interference.gif",
-		"caption": "Constructive and desctructive interference."
+		"caption": "Destructive interference between two waves."
+	},
+	{
+		"text": "In general, two waves will meet at some phase difference between in phase and out of phase, resulting in partial interference."
 	},
 	{
 		"figname": "ligo/out_of_phase.gif",
-		"caption": "Constructive and desctructive interference."
+		"caption": "Partial interference between two waves."
 	},
 	{
 		"level": "3",
-		"text": "Level three."
+		"text": "Now that we understand waves, we can use their properties to measure graviational waves. Gravitational waves are capable of stretching and contracting space, which will mess with their phases. Therefore, we can make use of this, coupled with wave interference, to measure gravitational waves."
 	},
 	{
-		"figname": "ligo/spiral1.gif",
-		"caption": "Michelson interferometer."
+		"figname": "ligo/interferometer.gif",
+		"caption": "Michelson interferometer, instrument used to measure gravitational waves."
 	},
 	{
 		"level": "4",
-		"text": "Level four."
-	},
-	{
-		"text": "Please refer to the original paper."
+		"text": "If you're level 4 in this field, you're more qualified than I am to talk about this. Refer to the original paper."
 	}
 ]
