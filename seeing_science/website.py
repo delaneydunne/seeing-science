@@ -5,7 +5,7 @@ import json
 '''
 COMMANDS TO RUN:
 
->>>> bash config_flask.bash
+>>>> export FLASK_APP=website.py
 >>>> flask run
 '''
 
@@ -26,6 +26,7 @@ TODO LIST:
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
+# List all the scientific contributions
 # List all the scientific contributions
 uri_list = ['ligo', 'bean']
 #https://stackoverflow.com/questions/33372054/get-folder-name-of-the-file-in-python
