@@ -1,0 +1,29 @@
+[
+	{
+		"title": "I like Beans",
+		"authors": "Michael",
+		"date": "December 2020"
+	},
+	{
+		"text": "We will insert some text here."
+	},
+	{
+		"level": "1",
+		"text": "More text for level one."
+	},
+	{
+		"figname": "bean/paircorr.gif",
+		"caption": "wowza."
+	},
+	{
+		"level": "2",
+		"text": "More text for level two."
+	},
+	{
+		"figname": "bean/polymer.gif",
+		"caption": "wowza."
+	},
+	{
+		"text": "Thanks for tuning in."
+	}
+]

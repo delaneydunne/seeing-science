@@ -1,0 +1,29 @@
+[
+	{
+		"title": "Observation of gravitational waves from a binary black hole merger",
+		"authors": "LIGO",
+		"date": "September 2015"
+	},
+	{
+		"text": "We will insert some text here."
+	},
+	{
+		"level": "1",
+		"text": "This is the description for difficulty level one."
+	},
+	{
+		"figname": "ligo/polymer.gif",
+		"caption": "wowza."
+	},
+	{
+		"level": "2",
+		"text": "More text for level two."
+	},
+	{
+		"figname": "ligo/paircorr.gif",
+		"caption": "wowza."
+	},
+	{
+		"text": "Thanks for tuning in."
+	}
+]
