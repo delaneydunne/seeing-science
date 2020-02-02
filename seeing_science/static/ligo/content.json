@@ -1,5 +1,9 @@
 [
 	{
+		"uri": "ligo",
+		"desc": "The first official measurement of gravitational waves"
+	},
+	{
 		"title": "Observation of gravitational waves from a binary black hole merger",
 		"authors": "LIGO",
 		"date": "September 2015"

@@ -1,5 +1,9 @@
 [
 	{
+		"uri": "bean",
+		"desc": "Michael would like to eat some beans"
+	},
+	{
 		"title": "I like Beans",
 		"authors": "Michael",
 		"date": "December 2020"

@@ -24,7 +24,7 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 # List all the scientific contributions
 uri_list = os.listdir('static')
 uri_list.remove('main.css')
-uri_dict_list = [{'uri': uri} for uri in uri_list]
+menu_list = []
 
 # Function to generate page
 def make_page(uri, posts):
@@ -32,6 +32,17 @@ def make_page(uri, posts):
 	@app.route('/' + uri, endpoint=uri)
 	def page():
 		return render_template('science.html', title=uri, posts=posts)
+		
+		
+# Generate pages for each contribution
+for uri in uri_list:
+
+	filepath = 'static/' + uri + '/content.json'
+	with open(filepath, 'r') as f:
+		dict_list = json.load(f)
+	
+	menu_list.append(dict_list[0])
+	make_page(uri, dict_list)
 
 
 @app.route("/")
@@ -52,22 +63,12 @@ def quiz():
 
 @app.route("/menu")
 def menu():
-	return render_template('menu.html', title='menu', posts=uri_dict_list)
+	return render_template('menu.html', title='menu', posts=menu_list)
 	
 	
 @app.route("/contribute")
 def contribute():
 	return render_template('contribute.html', title='contribute')
-
-
-# Generate pages for each contribution
-for uri in uri_list:
-
-	filepath = 'static/' + uri + '/content.json'
-	with open(filepath, 'r') as f:
-		dict_list = json.load(f)
-	
-	make_page(uri, dict_list)
 
 
 @app.route("/register", methods=['GET', 'POST'])

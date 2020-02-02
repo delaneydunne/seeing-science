@@ -6,12 +6,18 @@
 	<h4>Here is a comprehensive list of all the available resources.</h4>
 	
 	{% for post in posts %}
+	
+		{% if post.uri %}
 		
-		<article class="media content-section">
-			<div class="media-body">
-				<a class="mr-2" href="{{ url_for(post.uri) }}">{{ post.uri }}</a>
-			</div>
-		</article>
+			<article class="media content-section">
+				<div class="media-body">
+					<h4><a class="mr-2" href="{{ url_for(post.uri) }}">{{ post.uri }}</a></h4>
+					<div class="article-metadata"></div>
+					<p class="article-content">{{ post.desc }}</p>
+				</div>
+			</article>
+		
+		{% endif %}
 		
 	{% endfor %}
 {% endblock content %}
