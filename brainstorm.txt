@@ -1,0 +1,84 @@
+LOGISTICS
+
+ANIMATIONS
+	- LIGO
+		- interferometry
+		- binary black hole system
+		
+	- BLACK HOLE PICTURE
+	
+	- CERN
+	
+	- DISTANCE OF A STAR
+		- doppler measurement for distance
+		
+	- SOMETHING CHEMISTRY?
+	
+	
+WEBSITE
+	- FOR PUBLIC
+		- explanations
+	
+	
+	- FOR SCIENTISTS
+		- contribution guidelines
+		- sphinx
+		- github based
+		
+		
+LEVELS
+	- child, teen, college students?
+	
+	1) NO BACKGROUND AT ALL
+		- soccer parent, chainmail grandparent, antivaxxers
+		- ppl who use mcafee
+	
+	
+	2) HIGH-SCHOOL SCIENCE
+		- no calculus but basic trig
+		- general teenager / buisiness person
+	
+	
+	3) KNOWS SOME SCIENCE BUT NOT THIS SCIENCE
+		- general bachelor's 
+	
+	
+	4) EXPERT - redirect to the paper
+	
+	
+WE CONFUSE EACH OTHER. LET'S CHANGE THAT
+
+
+DEMO
+	- describe a parsec in three levels of difficulty
+		- filter examples of levels
+			1) humungous distance - in space
+			2) avg distance between stars
+			3) full-on explanation of parallax
+			4) you could give this explanation
+			
+			
+
+
+
+TASKS
+	- ANIMATIONS
+		- make them
+		
+		
+	- WEBSITE - MLD
+		- flask
+		- format the framework
+			- multiple pages?
+		- write out the content
+			- text file with no formatting - fill in blanks while tying everything together
+			
+
+
+REPO
+seeing-science
+	.seeing-science/papers/LIGO/animations/explanations
+	.README.md
+	.contribution_guidelines.txt
+	.levels_philosophy.txt 
+
