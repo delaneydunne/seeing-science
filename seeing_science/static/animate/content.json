@@ -9,13 +9,44 @@
 		"date": "February 2020"
 	},
 	{
-		"text_before": "This discovery is monumental in the field of physics; it is the first detection of one of Einstein's oldest predictions.",
-		"code": "push() \n werwerwer",
+		"text_before": "In this tutorial, we are going to teach you how to create animations in Python, using Matplotlib. To begin, we must import our standard libraries.",
+		"code": "import numpy as np \nfrom matplotlib import pyplot as plt \nfrom matplotlib.animation import FuncAnimation",
 		"text_after": ""
 	},
 	{
-		"figname": "animate/BH_spiral.gif",
-		"caption": "Two black holes coalescing, emitting gravitational waves.",
-		"generator": "ligo/photon_interference.py"
+		"text_before": "The first task is to generate a set of data for the function to animate. Let's say we want to illustrate the expansion of a circle. Then, for each frame of the animation, we need a new circle object whose radius reflects how long it has been since the start of the animation.",
+		"code": "circle_angles = np.linspace(0, 2*np.pi) \nx_pos = np.cos(circle_angles) \ny_pos = np.sin(circle_angles) \nunit_circle = np.hstack((x_pos[:,None], y_pos[:,None]))",
+		"text_after": "This creates one circle array with radius one."
+	},
+	{
+		"text_before": "To make our circle expand, we need to resize the unit circle as a function of the frame number.",
+		"code": "tot_frames = 360 \nfps = 30 \ndata = [frame * unit_circle for frame in range(tot_frames)]",
+		"text_after": "Therefore, we now have enough information to plot a linearly expanding circle for 12 seconds."
+	},
+	{
+		"text_before": "Having created the data set, we are ready to plot the circle's initial position.",
+		"code": "fig = plt.figure(figsize=(8,8)) \nax = fig.add_subplot(111) \nline = ax.plot(data[0][:,0], data[0][:,1], '-')[0]",
+		"text_after": "The final command keeps track of the line object that we have plotted. Because of this, we will be able to access the x and y values of the line to edit the location of the circle at every frame."
+	},
+	{
+		"text_before": "To update the circle every frame, we need to edit the line data.",
+		"code": "def update(frame): \n    line.set_data(data[frame][:,0:2].T)",
+		"text_after": "Therefore, the animation will update every frame to produce a bigger circle."
+	},
+	{
+		"text_before": "Finally, we simply need to request that matplotlib animate our circle.",
+		"code": "ani = FuncAnimation(fig, update, tot_frames, interval=1000/fps) \nplt.show()",
+		"text_after": "And there you have it! The animation is complete."
+	},
+	{
+		"figname": "animate/circle.gif",
+		"caption": "Expansion of a unit circle.",
+		"generator": "animate/circle.py"
+	},
+	{
+		"text": "Note that, along the way, you might come across a couple errors in your code. Here are some of our personal favorite issues."
+	},
+	{
+		"figname": "animate/circle.gif"
 	}
 ]
