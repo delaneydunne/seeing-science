@@ -47,6 +47,15 @@
 		"text": "Note that, along the way, you might come across a couple errors in your code. Here are some of our personal favorite issues."
 	},
 	{
-		"figname": "animate/circle.gif"
+		"figname": "animate/spiral_jumpy.gif"
+	},
+	{
+		"figname": "animate/spiral_pyschodelic.gif"
+	},
+	{
+		"figname": "animate/test1_LINES.gif"
+	},
+	{
+		"figname": "animate/test1_messedupbutfun.gif"
 	}
 ]
