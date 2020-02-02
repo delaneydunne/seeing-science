@@ -1,5 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-	<h1>Menu Page</h1>
-	<h2>PLEASE CONFIGURE</h2>
+
+	<h1>Menu</h1>
+	
+	<h4>Here is a comprehensive list of all the available resources.</h4>
+	
+	{% for post in posts %}
+		
+		<article class="media content-section">
+			<div class="media-body">
+				<a class="mr-2" href="{{ url_for(post.uri) }}">{{ post.uri }}</a>
+			</div>
+		</article>
+		
+	{% endfor %}
 {% endblock content %}

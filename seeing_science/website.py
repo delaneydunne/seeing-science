@@ -6,20 +6,24 @@ import os
 '''
 COMMANDS TO RUN:
 
->>>> bash config_flask.bash
+>>>> export FLASK_APP=website.py
 >>>> flask run
 '''
 
 '''
 TODO LIST:
 - Setup home.html
-- Setup levels.html
-- Setup menu.html
-- Properly populate content.json files
+	- Include our values
+		- Cooperation
+		- Accessibility
+		- Open source
+		yada yada yada
+- Setup quiz.html
 - Write contribution_guidelines
 - Write README
 - Write levels_philosophy
 - Make separate web pages for each level
+- Properly populate content.json files
 '''
 
 app = Flask(__name__)
@@ -28,6 +32,7 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 # List all the scientific contributions
 uri_list = os.listdir('static')
 uri_list.remove('main.css')
+uri_dict_list = [{'uri': uri} for uri in uri_list]
 
 # Function to generate page
 def make_page(uri, posts):
@@ -40,17 +45,22 @@ def make_page(uri, posts):
 @app.route("/")
 @app.route("/home")
 def home():
-	return render_template('home.html', title='Home')
+	return render_template('home.html', title='home')
 
 
 @app.route("/levels")
 def levels():
-	return render_template('levels.html', title='Levels')
+	return render_template('levels.html', title='levels')
+	
+	
+@app.route("/quiz")
+def quiz():
+	return render_template('quiz.html', title='quiz')
 
 
 @app.route("/menu")
 def menu():
-	return render_template('menu.html', title='Menu')
+	return render_template('menu.html', title='menu', posts=uri_dict_list)
 
 
 # Generate pages for each contribution
