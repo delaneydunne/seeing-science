@@ -1,0 +1,21 @@
+[
+	{
+		"uri": "animate",
+		"desc": "General tutorial on how to make animations in Python"
+	},
+	{
+		"title": "Creating Animations in Python",
+		"authors": "DD, PR, MLD",
+		"date": "February 2020"
+	},
+	{
+		"text_before": "This discovery is monumental in the field of physics; it is the first detection of one of Einstein's oldest predictions.",
+		"code": "push() \n werwerwer",
+		"text_after": ""
+	},
+	{
+		"figname": "animate/BH_spiral.gif",
+		"caption": "Two black holes coalescing, emitting gravitational waves.",
+		"generator": "ligo/photon_interference.py"
+	}
+]

@@ -18,6 +18,18 @@
 				</div>
 			</article>
 			
+		{% elif post.code %}
+		
+			<article class="media content-section">
+				<div class="media-body">
+					<p class="article-content">{{ post.text_before }}</p>
+					<div class="article-metadata"></div>
+					<code class="article-content">{{ post.code }}</code>
+					<div class="article-metadata"></div>
+					<p class="article-content">{{ post.text_after }}</p>
+				</div>
+			</article>
+			
 		{% elif post.level %}
 		
 			<article class="media content-section">
