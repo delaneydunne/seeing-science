@@ -17,7 +17,7 @@
 		"text": "Level one."
 	},
 	{
-		"figname": "ligo/polymer.gif",
+		"figname": "ligo/BH_spiral.gif",
 		"caption": "Two black holes coalescing."
 	},
 	{
@@ -25,7 +25,15 @@
 		"text": "Level two."
 	},
 	{
-		"figname": "ligo/polymer.gif",
+		"figname": "ligo/constructive_interference.gif",
+		"caption": "Constructive and desctructive interference."
+	},
+	{
+		"figname": "ligo/destructive_interference.gif",
+		"caption": "Constructive and desctructive interference."
+	},
+	{
+		"figname": "ligo/out_of_phase.gif",
 		"caption": "Constructive and desctructive interference."
 	},
 	{
@@ -33,7 +41,7 @@
 		"text": "Level three."
 	},
 	{
-		"figname": "ligo/polymer.gif",
+		"figname": "ligo/spiral1.gif",
 		"caption": "Michelson interferometer."
 	},
 	{
