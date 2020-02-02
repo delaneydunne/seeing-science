@@ -6,28 +6,41 @@
 	{
 		"title": "Observation of gravitational waves from a binary black hole merger",
 		"authors": "LIGO",
-		"date": "September 2015"
+		"date": "September 2015",
+		"url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102"
 	},
 	{
-		"text": "We will insert some text here."
+		"text": "Introductory text."
 	},
 	{
 		"level": "1",
-		"text": "This is the description for difficulty level one."
+		"text": "Level one."
 	},
 	{
 		"figname": "ligo/polymer.gif",
-		"caption": "wowza."
+		"caption": "Two black holes coalescing."
 	},
 	{
 		"level": "2",
-		"text": "More text for level two."
+		"text": "Level two."
 	},
 	{
-		"figname": "ligo/paircorr.gif",
-		"caption": "wowza."
+		"figname": "ligo/polymer.gif",
+		"caption": "Constructive and desctructive interference."
 	},
 	{
-		"text": "Thanks for tuning in."
+		"level": "3",
+		"text": "Level three."
+	},
+	{
+		"figname": "ligo/polymer.gif",
+		"caption": "Michelson interferometer."
+	},
+	{
+		"level": "4",
+		"text": "Level four."
+	},
+	{
+		"text": "Please refer to the original paper."
 	}
 ]
