@@ -159,11 +159,13 @@ INITIALIZE GRAVITATIONAL WAVE ANIMATION
 '''
 # initialize axes
 fig2,ax2 = plt.subplots(1)
-ax2.set_xlim((-400,400))
-ax2.set_ylim((-400,400))
+ax2.set_xlim((-300,300))
+ax2.set_ylim((-300,300))
 
 # disable the tickmarks on the axes
 ax2.tick_params(bottom = False, left = False, labelbottom = False, labelleft = False)
+# set the aspect ratio to 1
+ax2.set_aspect(aspect=1)
 
 # define the inital spiral - matplotlib treats this as a polygon object
 spiral = ax2.fill(framelist[0][:,0], framelist[0][:,1])[0]
@@ -172,12 +174,15 @@ spiral = ax2.fill(framelist[0][:,0], framelist[0][:,1])[0]
 
 BH_dist = 20 # black hole radial distance from the origin
 
-circ1 = plt.Circle((-BH_dist, 0), radius = 20, fc='k', fill=True, zorder=10)
-circ2 = plt.Circle((BH_dist, 0), radius = 20, fc='k', fill=True, zorder=10)
+circ1 = plt.Circle((-BH_dist, 0), radius = 15, fc='k', fill=True, zorder=12)
+circ2 = plt.Circle((BH_dist, 0), radius = 15, fc='k', fill=True, zorder=12)
+
+circ3 = plt.Circle((0,0), radius = BH_dist, fc='white', fill=True, zorder=10)
 
 #initialize the two BH circles by adding them to the axes as a patch
 ax2.add_patch(circ1)
 ax2.add_patch(circ2)
+ax2.add_patch(circ3)
 
 # add an additional stationary white circle as a patch to avoid
 # the weird-looking center of the spiral
@@ -188,8 +193,8 @@ def updatespiral(frame):
 	ax2.cla()
 	
 	# fix the axes (.cla clears this)
-	ax2.set_xlim((-400,400))
-	ax2.set_ylim((-400,400))
+	ax2.set_xlim((-300,300))
+	ax2.set_ylim((-300,300))
 	
 	# move to the next frame in the spiral animation
 	ax2.fill(framelist[frame][:,0], framelist[frame][:,1], color='b', zorder=10)[0]
@@ -203,6 +208,7 @@ def updatespiral(frame):
 	# add them to the axes as patches again
 	ax2.add_patch(circ1)
 	ax2.add_patch(circ2)
+	ax2.add_patch(circ3)
 
 
 # create the animation
