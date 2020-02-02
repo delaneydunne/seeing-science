@@ -177,6 +177,6 @@ def updatespiral(frame):
 
 
 # create the animation
-ani = animation.FuncAnimation(fig2, updatespiral, frames = tot_frames, interval=1000/fps, blit=False, repeat=True)
+ani = FuncAnimation(fig2, updatespiral, frames = tot_frames, interval=1000/fps, blit=False, repeat=True)
 ani.save('spiral1.gif', writer='pillow', fps=fps)
 plt.show()
