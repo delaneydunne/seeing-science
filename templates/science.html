@@ -4,20 +4,13 @@
 		
 		{% if post.title %}
 		
-			<h1>{{ post.title }}</h1>
 			<article class="media content-section">
 				<div class="media-body">
 					<h2><a class="article-title">{{ post.title }}</a></h2>
-					<h3><p class="article-content">{{ post.authors }}</p><h3>
-					<h3><p class="article-content">{{ post.date }}</p><h3>
-				</div>
-			</article>
-			
-		{% elif post.text %}
-		
-			<article class="media content-section">
-				<div class="media-body">
-					<p><a class="article-title">{{ post.text }}</a></p>
+					<div class="article-metadata">
+						<a class="mr-2" href="#">Authors: {{ post.authors }}</a>
+						<small class="text-muted">Date posted: {{ post.date }}</small>
+					</div>
 				</div>
 			</article>
 			
@@ -25,8 +18,18 @@
 		
 			<article class="media content-section">
 				<div class="media-body">
-					<h2><a class="article-title">Level {{ post.level }}</a></h2>
-					<p><p class="article-content">{{ post.text }}</p><p>
+					<div class="article-metadata">
+						<h2><a class="mr-2">Difficulty: Level {{ post.level }}</a></h2>
+					</div>
+					<p class="article-content">{{ post.text }}</p>
+				</div>
+			</article>
+			
+		{% elif post.text %}
+		
+			<article class="media content-section">
+				<div class="media-body">
+					<p class="article-content">{{ post.text }}</p>
 				</div>
 			</article>
 		
@@ -35,22 +38,11 @@
 			<article class="media content-section">
 				<div class="media-body">
 					<img src="{{ url_for('static', filename='polymer.gif') }}">
-					<h2><a class="article-title">Level {{ post.figname }}</a></h2>
-					<p><i><p class="article-content">{{ post.caption }}</p></i><p>
+					<i><p class="article-content">{{ post.caption }}</p></i>
 				</div>
 			</article>
 		
 		{% endif %}
-	
-		<article class="media content-section">
-			<div class="media-body">
-				<div class="article-metadata">
-					<a class="mr-2" href="#">{{ post.author }}</a>
-					<small class="text-muted">{{ post.date_posted }}</small>
-				</div>
-				<h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-				<p class="article-content">{{ post.content }}</p>
-			</div>
-		</article>
+		
 	{% endfor %}
 {% endblock content %}
