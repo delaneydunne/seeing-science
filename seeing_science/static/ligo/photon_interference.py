@@ -47,21 +47,22 @@ y_pos_arr = np.tile(y_in, (1, tot_frames))
 phase = spatial_resolution*np.arange(tot_frames)
 
 # offset y-positions for each individual frame
-phase_offset = np.pi
+phase_offset = np.pi # CHANGE THIS TO CHANGE THE INTERFERENCE PATTERN
+period = 2*np.pi/omega
 y_in_arr = np.add(y_pos_arr, phase)
 y_in_arr2 = np.add(y_in_arr, phase_offset)
 
 
 # stack values together into a single array
 wave1 = np.stack((x_pos_arr, np.sin(y_in_arr)), axis=2)
-wave2 = np.stack((x_pos_arr, np.sin(y_in_arr2)+3), axis=2)
+wave2 = np.stack((x_pos_arr, np.sin(y_in_arr2)), axis=2)
 
 
 
 '''
 CREATE SUPERPOSITION OBJECT
 '''
-supdata = np.stack((x_pos_arr, np.sin(y_in_arr) + np.sin(y_in_arr2) - 3), axis=2)
+supdata = np.stack((x_pos_arr, np.sin(y_in_arr) + np.sin(y_in_arr2) - 2), axis=2)
 
 
 '''
@@ -69,14 +70,23 @@ INITIALIZE PLOT
 '''
 # initiate the axes
 fig,ax1 = plt.subplots(1)
+ax1.set_xlim((0,10))
+ax1.set_ylim((-5.5, 4))
+
+# disable the tickmarks on the axes
+ax1.tick_params(bottom = False, left = False, labelbottom = False, labelleft = False)
 
 # set the initial position for the sine waves
-sin1 = ax1.plot(wave1[:,0,0], wave1[:,0,1])[0]
+sin1 = ax1.plot(wave1[:,0,0], wave1[:,0,1], zorder=10, label="First light beam")[0]
+sin2 = ax1.plot(wave2[:,0,0], wave2[:,0,1], zorder=10, label="Second light beam")[0]
+sup = ax1.plot(supdata[:,0,0], supdata[:,0,1], zorder=10, label="Interference pattern")[0]
 
-sin2 = ax1.plot(wave2[:,0,0], wave2[:,0,1])[0]
 
-sup = ax1.plot(supdata[:,0,0], supdata[:,0,1])[0]
+ax1.axhline(0, color='k', zorder=0, lw=0.5)
+ax1.axhline(-2, color='k', zorder=0, lw=0.5)
+# ax1.axhline(0.5, color='k', zorder=0, lw=0.5)
 
+ax1.legend(loc='upper right')
 
 '''
 ANIMATE
@@ -84,15 +94,20 @@ ANIMATE
 
 # function to move from one frame to the next
 def update(frame):
+
+	ax1.set_xlim((0,10))
+	
 	sin1.set_data(wave1[:,frame,0], wave1[:,frame,1])
 	sin2.set_data(wave2[:,frame,0], wave2[:,frame,1])
 	sup.set_data(supdata[:,frame,0], supdata[:,frame,1])
-	
+
 
 
 ani = FuncAnimation(fig, update, tot_frames, interval=1000/fps, blit=False, repeat=True)
 ani.save('test1.gif', writer='pillow', fps=fps)
 
+
+exit()
 
 '''
 CREATE SPIRAL TO MODEL GRAVITATIONAL WAVES
