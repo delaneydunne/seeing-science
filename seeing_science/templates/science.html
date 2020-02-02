@@ -25,7 +25,11 @@
 					<div class="article-metadata">
 						<h2><a class="mr-2">Difficulty: Level {{ post.level }}</a></h2>
 					</div>
-					<p class="article-content">{{ post.text }}</p>
+					{% if post.url %}
+						<a class="mr-2" href="{{ post.url }}">Click here.</a>
+					{% else %}
+						<p class="article-content">{{ post.text }}</p>
+					{% endif %}
 				</div>
 			</article>
 			
