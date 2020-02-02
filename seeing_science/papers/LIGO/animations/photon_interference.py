@@ -92,3 +92,91 @@ def update(frame):
 
 ani = FuncAnimation(fig, update, tot_frames, interval=1000/fps, blit=False, repeat=True)
 ani.save('test1.gif', writer='pillow', fps=fps)
+
+
+'''
+CREATE SPIRAL TO MODEL GRAVITATIONAL WAVES
+'''
+# make an array of different theta values
+theta = np.arange(0, 8*np.pi, 0.1)
+
+# coefficients to play with
+a = 10
+b = 0.25 # number of turns
+c = 5. # vary this to get the width of the spiral
+
+framelist = []
+
+x = 0
+
+# loop through frames - each frame is changing by a phase dph 
+# this change happens in the limits of dt
+
+for dph in np.linspace(0., 2*np.pi, num=tot_frames):
+
+	# t is the parametrization
+	for dt in np.arange(0., np.pi/2., np.pi/2.0):
+		
+		dt = dt + dph
+
+		x = a*np.cos(theta + dt)*np.exp(b*theta)
+		y = a*np.sin(theta + dt)*np.exp(b*theta)
+
+		dt = dt + np.pi/c
+
+		x2 = a*np.cos(theta + dt)*np.exp(b*theta)
+		y2 = a*np.sin(theta + dt)*np.exp(b*theta)
+
+		xf1 = np.concatenate((x, x2[::-1]))
+		yf1 = np.concatenate((y, y2[::-1]))
+
+		# plot the second spiral
+		dt2 = dt + np.pi
+
+		x = a*np.cos(theta + dt2)*np.exp(b*theta)
+		y = a*np.sin(theta + dt2)*np.exp(b*theta)
+
+		dt2 = dt2 + np.pi/c
+
+		x2 = a*np.cos(theta + dt2)*np.exp(b*theta)
+		y2 = a*np.sin(theta + dt2)*np.exp(b*theta)
+
+		xf2 = np.concatenate((x, x2[::-1]))
+		yf2 = np.concatenate((y, y2[::-1]))
+
+
+	xyf1 = np.stack((xf1, yf1), axis=1)
+	xyf2 = np.stack((xf2, yf2), axis=1)
+
+	xyf = np.concatenate((xyf1, xyf2))
+	
+	framelist.append(xyf)
+	
+
+'''
+INITIALIZE GRAVITATIONAL WAVE ANIMATION
+'''
+# initialize axes
+fig2,ax2 = plt.subplots(1)
+ax2.set_xlim((-400,400))
+ax2.set_ylim((-400,400))
+
+# disable the tickmarks on the axes
+ax2.tick_params(bottom = False, left = False, labelbottom = False, labelleft = False)
+
+# define the inital spiral - matplotlib treats this as a polygon object
+spiral = ax2.fill(framelist[0][:,0], framelist[0][:,1])[0]
+
+
+# define the function to update the spiral each frame
+def updatespiral(frame):
+	ax2.cla()
+	ax2.set_xlim((-400,400))
+	ax2.set_ylim((-400,400))
+	ax2.fill(framelist[frame][:,0], framelist[frame][:,1], color='b', zorder=10)[0]
+
+
+# create the animation
+ani = animation.FuncAnimation(fig2, updatespiral, frames = tot_frames, interval=1000/fps, blit=False, repeat=True)
+ani.save('spiral1.gif', writer='pillow', fps=fps)
+plt.show()
