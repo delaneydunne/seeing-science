@@ -5,7 +5,7 @@ import json
 '''
 COMMANDS TO RUN:
 
->>>> export FLASK_APP=website.py
+>>>> bash config_flask.bash
 >>>> flask run
 '''
 
@@ -17,20 +17,23 @@ TODO LIST:
 - Setup levels.html
 - Setup menu.html
 - Properly populate content.json files
+- Write contribution_guidelines
+- Write README
+- Write levels_philosophy
+- Make separate web pages for each level
 '''
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 # List all the scientific contributions
-uri_list = ['ligo']
-#uri_list = ['ligo', 'bean']
+uri_list = ['ligo', 'bean']
 #https://stackoverflow.com/questions/33372054/get-folder-name-of-the-file-in-python
 
 # Function to generate page
 def make_page(uri, posts):
 
-	@app.route('/' + uri)
+	@app.route('/' + uri, endpoint=uri)
 	def page():
 		return render_template('science.html', title=uri, posts=posts)
 
