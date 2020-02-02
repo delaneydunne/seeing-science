@@ -21,7 +21,7 @@ uri_list = ['ligo']
 def make_page(uri, posts):
 
 	@app.route('/' + uri)
-	def page(uri=uri, posts=posts):
+	def page():
 		return render_template('science.html', title=uri, posts=posts)
 
 
