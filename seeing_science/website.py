@@ -9,6 +9,16 @@ COMMANDS TO RUN:
 >>>> flask run
 '''
 
+'''
+TODO LIST:
+- Make website load both 'ligo' and 'bean'
+- Make python automatically determine file paths
+- Setup home.html
+- Setup levels.html
+- Setup menu.html
+- Properly populate content.json files
+'''
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
