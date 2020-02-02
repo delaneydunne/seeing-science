@@ -24,6 +24,7 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 # List all the scientific contributions
 uri_list = os.listdir('static')
 uri_list.remove('main.css')
+uri_list.remove('logo.png')
 menu_list = []
 
 # Function to generate page
