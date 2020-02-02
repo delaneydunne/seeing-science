@@ -111,8 +111,9 @@ x = 0
 
 # loop through frames - each frame is changing by a phase dph 
 # this change happens in the limits of dt
+phlist = np.linspace(0., 2*np.pi, num=tot_frames)
 
-for dph in np.linspace(0., 2*np.pi, num=tot_frames):
+for dph in phlist:
 
 	# t is the parametrization
 	for dt in np.arange(0., np.pi/2., np.pi/2.0):
@@ -167,13 +168,41 @@ ax2.tick_params(bottom = False, left = False, labelbottom = False, labelleft = F
 # define the inital spiral - matplotlib treats this as a polygon object
 spiral = ax2.fill(framelist[0][:,0], framelist[0][:,1])[0]
 
+# define two circle objects to represent the black holes
+
+BH_dist = 20 # black hole radial distance from the origin
+
+circ1 = plt.Circle((-BH_dist, 0), radius = 20, fc='k', fill=True, zorder=10)
+circ2 = plt.Circle((BH_dist, 0), radius = 20, fc='k', fill=True, zorder=10)
+
+#initialize the two BH circles by adding them to the axes as a patch
+ax2.add_patch(circ1)
+ax2.add_patch(circ2)
+
+# add an additional stationary white circle as a patch to avoid
+# the weird-looking center of the spiral
+
 
 # define the function to update the spiral each frame
 def updatespiral(frame):
 	ax2.cla()
+	
+	# fix the axes (.cla clears this)
 	ax2.set_xlim((-400,400))
 	ax2.set_ylim((-400,400))
+	
+	# move to the next frame in the spiral animation
 	ax2.fill(framelist[frame][:,0], framelist[frame][:,1], color='b', zorder=10)[0]
+	
+	# change the center position of the two circle patches
+	x = BH_dist*np.cos(phlist[frame])
+	y = BH_dist*np.sin(phlist[frame])
+	circ1.center = (BH_dist*np.cos(phlist[frame]),BH_dist*np.sin(phlist[frame]))
+	circ2.center = (BH_dist*np.cos(phlist[frame] + np.pi),BH_dist*np.sin(phlist[frame] + np.pi))
+	
+	# add them to the axes as patches again
+	ax2.add_patch(circ1)
+	ax2.add_patch(circ2)
 
 
 # create the animation
