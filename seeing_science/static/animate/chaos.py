@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 # Animation parameters
-tot_seconds = 5
+tot_seconds = 1
 fps = 60
 
 # Total number of frames
@@ -28,7 +28,7 @@ Create static pillars
 # Pillar parameters
 num_pillars_x = 5
 pillar_spacing = 1
-pillar_radius = 0.3
+pillar_radius = 0.1
 
 pillar_list = []
 pillar_circle = pillar_radius * unit_circle
@@ -52,19 +52,18 @@ max_dim = num_pillars_x - 1 + 2 * pillar_radius
 Create ball object
 '''
 
-num_balls = 1
-init_pos = np.array([0, 1]) * 1.0
-init_dir = np.array([1, 1]) * np.sqrt(2) / 2
+num_balls = 5
+init_pos = np.array([0.5, 0.5])
 
 class Ball:
 	
-	speed = 1e-1
+	speed = 5e-2
 	
 	def __init__(self, position, direction, pillar_centers, pillar_radius, \
 				min_x, max_x, min_y, max_y, pbc, graph):
 		
 		self.position = position
-		self.velocity = direction * self.speed
+		self.velocity = direction / np.linalg.norm(direction) * self.speed
 		self.pillar_centers = pillar_centers
 		self.pillar_radius = pillar_radius
 		self.min_x = min_x
@@ -85,9 +84,17 @@ class Ball:
 		# Check pillar collisions
 		deltas = pillar_centers - self.position[:, None]
 		squares = np.square(deltas)
-		distances = np.sum(squares, axis=0)
+		mags = np.sum(squares, axis=0)
+		distances = np.sqrt(mags)
+		this = np.where(distances < self.pillar_radius)
 		
-		indices = np.where(distances < self.pillar_radius)
+		# Collision with circle
+		if this[0].shape[0] != 0:
+			
+			center = pillar_centers[:,this[0]][:,0]
+			direction = self.position - center
+			velocity = direction / np.linalg.norm(direction) * self.speed
+			self.velocity = velocity
 		
 		# Check wall collisions
 		if self.pbc:
@@ -119,17 +126,30 @@ ax = fig.add_subplot(111)
 
 # Initial pillar posititions
 for pillar_line in pillar_list:
-	ax.plot(pillar_line[0,:], pillar_line[1,:], '--r')
+	ax.plot(pillar_line[0,:], pillar_line[1,:], '-r')
 
 # Initial ball positions
-ball_list = [Ball(init_pos, init_dir, pillar_centers, pillar_radius, \
-			min_dim, max_dim, min_dim, max_dim, True, \
-			ax.scatter(init_pos[0], init_pos[1])) for i in range(num_balls)]
+ball_list = []
+graph_list = []
+dir_list = []
+angles = np.linspace(0.1, 2.7, num=num_balls)
+
+for i in range(num_balls):
+		
+	dir_list.append(np.array([np.cos(angles[i]), np.sin(angles[i])]))
+	graph_list.append(ax.scatter(init_pos[0], init_pos[1], c='g'))
+	
+	ball_list.append(Ball(init_pos, dir_list[i], pillar_centers, \
+				pillar_radius, min_dim, max_dim, min_dim, max_dim, \
+				True, graph_list[i]))
 
 # Update axes
 def update(frame, ball_list):
 	for ball in ball_list:
 		ball.update()
+		if frame == 2:
+			print(ball.velocity)
+			print(ball.position)
 
 '''
 Configure plot settings
