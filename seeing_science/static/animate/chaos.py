@@ -44,31 +44,59 @@ for x in range(num_pillars_x):
 		
 		pillar_centers[:, index] = pos
 		pillar_list.append(pillar_circle + pos.T)
+		
+min_dim = -2 * pillar_radius
+max_dim = num_pillars_x - 1 + 2 * pillar_radius
 
 '''
 Create ball object
 '''
 
 num_balls = 1
-init_pos = np.array([0, 0]) * 1.0
+init_pos = np.array([0, 1]) * 1.0
 init_dir = np.array([1, 1]) * np.sqrt(2) / 2
 
 class Ball:
 	
 	speed = 1e-1
 	
-	def __init__(self, position, direction, pillar_centers, pillar_radius, graph):
+	def __init__(self, position, direction, pillar_centers, pillar_radius, \
+				min_x, max_x, min_y, max_y, pbc, graph):
 		self.position = position
 		self.velocity = direction * self.speed
 		self.pillar_centers = pillar_centers
 		self.pillar_radius = pillar_radius
+		self.pbc = pbc
+		self.min_x = min_x
+		self.max_x = max_x
+		self.min_y = min_y
+		self.max_y = max_y
 		self.graph = graph
+		self.width_x = max_x - min_x
+		self.width_y = max_y - min_y
 	
 	def update(self):
 		self.position += self.velocity
 		
 		# Ignore pillar collisions
 		self.graph.set_offsets(self.position)
+		
+		# Check wall collisions
+		if self.pbc:
+			if self.position[0] < self.min_x:
+				self.position[0] += self.width_x
+			if self.position[0] > self.max_x:
+				self.position[0] -= self.width_x
+			if self.position[1] < self.min_y:
+				self.position[1] += self.width_y
+			if self.position[1] > self.max_y:
+				self.position[1] -= self.width_y
+		
+		else:
+			if self.position[0] < self.min_x or self.position[0] > self.max_x:
+				self.velocity[0] *= -1.0
+			if self.position[1] < self.min_y or self.position[1] > self.max_y:
+				self.velocity[1] *= -1.0
 
 '''
 Plot system
@@ -84,10 +112,11 @@ for pillar_line in pillar_list:
 
 # Initial ball positions
 ball_list = [Ball(init_pos, init_dir, pillar_centers, pillar_radius, \
+			min_dim, max_dim, min_dim, max_dim, True, \
 			ax.scatter(init_pos[0], init_pos[1])) for i in range(num_balls)]
 
 # Update axes
-def update(frame):
+def update(frame, ball_list):
 	for ball in ball_list:
 		ball.update()
 
@@ -96,8 +125,8 @@ Configure plot settings
 '''
 
 # Set limits for the plots
-ax.set_xlim([-2 * pillar_radius, num_pillars_x - 1 + 2 * pillar_radius])
-ax.set_ylim([-2 * pillar_radius, num_pillars_x - 1 + 2 * pillar_radius])
+ax.set_xlim([min_dim, max_dim])
+ax.set_ylim([min_dim, max_dim])
 ax.set_xticks([])
 ax.set_yticks([])
 
@@ -105,6 +134,6 @@ ax.set_yticks([])
 ANIMATE THE DIAGRAM
 '''
 
-ani = FuncAnimation(fig, update, tot_frames, interval=1000/fps)
-#ani.save('animation.gif', writer='imagemagick', fps=fps)
+ani = FuncAnimation(fig, update, tot_frames, fargs=[ball_list], interval=1000/fps)
+#ani.save('chaos.gif', writer='imagemagick', fps=fps)
 plt.show()
