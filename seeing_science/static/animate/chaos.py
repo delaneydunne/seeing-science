@@ -51,10 +51,6 @@ max_dim = num_pillars_x - 1 + 2 * pillar_radius
 Create ball object
 '''
 
-num_balls = 5
-init_pos = np.array([0.5, 0.5])
-
-
 class Ball:
     speed = 5e-2
 
@@ -69,13 +65,17 @@ class Ball:
         self.max_x = max_x
         self.min_y = min_y
         self.max_y = max_y
-        self.pbc = pbc
+        self.pbc   = pbc
         self.graph = graph
 
         self.width_x = max_x - min_x
         self.width_y = max_y - min_y
 
     def update(self):
+
+        # DEBUG HERE PLS
+        self.graph.set_offsets(self.velocity * 40)
+        return
 
         # Move ball forward
         self.position += self.velocity
@@ -128,22 +128,24 @@ for pillar_line in pillar_list:
     ax.plot(pillar_line[0, :], pillar_line[1, :], '-r')
 
 # Initial ball positions
+num_balls = 5
+init_pos = np.array([0.5, 0.5])
+
 ball_list = []
-graph_list = []
-dir_list = []
 angles = np.linspace(0.1, 2.7, num=num_balls)
 
 for i in range(num_balls):
-    dir_list.append(np.array([np.cos(angles[i]), np.sin(angles[i])]))
-    graph_list.append(ax.scatter(init_pos[0], init_pos[1], c='g'))
 
-    ball_list.append(Ball(init_pos, dir_list[i], pillar_centers, \
-                          pillar_radius, min_dim, max_dim, min_dim, max_dim, \
-                          True, graph_list[i]))
+    init_dir = np.array([np.cos(angles[i]), np.sin(angles[i])])
+    graph = ax.scatter(init_pos[0], init_pos[1], c='b')
+    ball_list.append(Ball(init_pos, init_dir, pillar_centers,
+                          pillar_radius, min_dim, max_dim, min_dim, max_dim,
+                          True, graph))
 
 
 # Update axes
 def update(frame, ball_list):
+
     for ball in ball_list:
         ball.update()
 
