@@ -57,8 +57,8 @@ class Ball:
     def __init__(self, position, direction, pillar_centers, pillar_radius,
                  min_x, max_x, min_y, max_y, pbc, graph):
 
-        self.position = position
-        self.velocity = direction / np.linalg.norm(direction) * self.speed
+        self.position = np.copy(position)
+        self.velocity = np.copy(direction) / np.linalg.norm(direction) * self.speed
         self.pillar_centers = pillar_centers
         self.pillar_radius = pillar_radius
         self.min_x = min_x
@@ -72,10 +72,6 @@ class Ball:
         self.width_y = max_y - min_y
 
     def update(self):
-
-        # DEBUG HERE PLS
-        self.graph.set_offsets(self.velocity * 40)
-        return
 
         # Move ball forward
         self.position += self.velocity
@@ -132,7 +128,7 @@ num_balls = 5
 init_pos = np.array([0.5, 0.5])
 
 ball_list = []
-angles = np.linspace(0.1, 2.7, num=num_balls)
+angles = np.linspace(1.4, 1.5, num=num_balls)
 
 for i in range(num_balls):
 
