@@ -121,19 +121,21 @@ ax = fig.add_subplot(111)
 
 # Initial pillar posititions
 for pillar_line in pillar_list:
-    ax.plot(pillar_line[0, :], pillar_line[1, :], '-r')
+    ax.plot(pillar_line[0, :], pillar_line[1, :], '-k')
 
 # Initial ball positions
-num_balls = 5
+num_balls = 20
 init_pos = np.array([0.5, 0.5])
 
 ball_list = []
-angles = np.linspace(1.4, 1.5, num=num_balls)
+angles = np.linspace(0, np.pi/12, num=num_balls)
+cmap = plt.get_cmap('gist_rainbow')
+colors = [cmap(i) for i in np.linspace(0, 1, num=num_balls)]
 
 for i in range(num_balls):
 
     init_dir = np.array([np.cos(angles[i]), np.sin(angles[i])])
-    graph = ax.scatter(init_pos[0], init_pos[1], c='b')
+    graph = ax.scatter(init_pos[0], init_pos[1], c=[colors[i]])
     ball_list.append(Ball(init_pos, init_dir, pillar_centers,
                           pillar_radius, min_dim, max_dim, min_dim, max_dim,
                           True, graph))
